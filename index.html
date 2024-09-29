@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fragrance Selection & Bottle</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Cinzel&display=swap");
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            --bottle-gradient:linear-gradient(to right, 
+            #322424 0%, 
+            #473a39 1%, 
+            #a9b0ad 6%, 
+            #897365 42%,
+            #2d1d7d 67%,
+            #390c53 90%,
+            #60c697 56%,
+            #44b4ca 70%,
+            #6cab54 70%,
+            #301e44 60%);
+            );
+            --metal-gradient: linear-gradient(
+                to right,
+                #393939 2%,
+                #e3e3e3 15% 45%,
+                #939393 50% 65%,
+                #d8d8d8 75% 85%,
+                #6c6c6c 95%
+            );
+        }
+
+        body {
+            background: white;
+            background-blend-mode: multiply;
+            background-repeat: no-repeat;
+            background-size: fill;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        /* Bottle Styles */
+        #bottle {
+            max-width: 320px;
+            margin: 2rem auto 0;
+        }
+
+        #cap {
+            background-image: var(--metal-gradient);
+            border-bottom: 0.25rem solid rgba(0, 0, 0, 0.85);
+            border-radius: 0.75rem 0.75rem 0.25rem 0.25rem;
+            box-shadow: inset 0 -0.6rem 0.25rem rgba(0, 0, 0, 0.675),
+                        inset 0 0.25rem 0.25rem rgba(0, 0, 0, 0.5);
+            width: 42%;
+            height: 6rem;
+            margin: 0 8.5rem auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        #cap::after {
+            content: "";
+            width: 100%;
+            height: 0.2rem;
+            background-image: repeating-linear-gradient(
+                65deg,
+                #ffffff,
+                #ffffff 5%,
+                #000000 8%,
+                #c7c7c7 15%
+            );
+            display: block;
+            position: absolute;
+            bottom: 0;
+            mix-blend-mode: multiply;
+        }
+
+        #mouth {
+            background-image: var(--bottle-gradient);
+            border-radius: 0.75rem;
+            box-shadow: inset 0 0 0.75rem rgba(0, 0, 0, 0.75),
+                        inset 0 0 1rem rgba(0, 0, 0, 0.75);
+            width: 37%;
+            height: 1rem;
+            margin: 0 9rem auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        #neck {
+            background-image: var(--bottle-gradient);
+            box-shadow: inset 0 2rem 2rem 1rem rgba(0, 0, 0, 0.75);
+            width: 40%;
+            height: 10rem;
+            border-radius: 0.75rem 0.75rem 0.25rem 0.25rem;
+            margin: -7.0rem 8.77rem -2.0rem;
+            transform: perspective(1rem) rotateX(.2deg);
+        }
+
+        #shoulder {
+            background-image: var(--bottle-gradient);
+            border-radius: 1rem 1rem 0 0;
+            box-shadow: inset 2rem 0.25rem 1.5rem -0.3rem rgba(0, 0, 0, 0.5),
+                        inset -4rem 1rem 1.5rem -0.3rem rgba(0, 0, 0, 0.5),
+                        inset -1rem 0.5rem 1rem rgba(0, 0, 0, 0.5);
+            height: 6em;
+            margin: 0 -40 -0.25rem;
+            position: relative;
+            transform: translateY(-1rem);
+            width: 25em;
+            z-index: 1;
+        }
+
+        #body {
+            background-image: var(--bottle-gradient);
+            border-radius: 0 0 .4rem .4rem;
+            box-shadow: inset 0 -0.1rem 0.1rem rgba(0, 0, 0, 0.25),
+                        inset 1rem -0.1rem 1.5rem rgba(0, 0, 0, 0.5),
+                        inset -1rem -2rem 1.5rem rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 -40;
+            min-height: 20rem;
+            padding: 2rem;
+            position: relative;
+            transform: translateY(-1.5rem);
+            width: 25em;
+            z-index: 2;
+        }
+
+        #body::after {
+            content: "";
+            border-radius: 80%;
+            box-shadow: 3rem -1rem 1.5rem -0.5rem rgba(0, 0, 0, 0);
+            width: 120%;
+            height: 1.3rem;
+            background-color: black;
+            display: block;
+            position: absolute;
+            bottom: -0.875rem;
+            filter: blur(0.7rem);
+            z-index: -999;
+        }
+
+        .label {
+            background-image: linear-gradient(
+                to right,
+                #dcdcdc 2%,
+                #fefefe 10% 35%,
+                #ffffff 40% 65%,
+                #eaeaea 70% 80%,
+                #fafafa 85% 95%,
+                #dcdcdc 98%
+            );
+            border-top: 1px solid #524444;
+            border-left: 1px solid #423434;
+            border-right: 1px solid #423434;
+            border-bottom: 1px solid #23211e;
+            border-radius: 0.5rem;
+            box-shadow: 0 4rem 4rem -1rem rgba(0, 0, 0, 0.6),
+                        0 -7rem 3rem -1.75rem rgba(0, 0, 0, 0.4);
+            padding: 1rem;
+            margin-bottom: 3rem;
+            margin-top: -3rem;
+        }
+
+        .beer-brand {
+            font-size: 1.25rem;
+            font-weight: lighter;
+            margin: 0.5rem auto 0.125rem;
+            text-align: center;
+        }
+
+        .beer-name {
+            font-family: "Cinzel";
+            font-size: 1.6rem;
+            letter-spacing: .3rem;
+            margin: 0 auto 1rem;
+            text-align: center;
+        }
+
+        .beer-name::after {
+            background-color: #333;
+            content: "";
+            display: block;
+            height: 0.0675rem;
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+        .beer-attr {
+            text-transform: capitalize;
+            font-size: .85rem;
+          
+        }
+
+        .beer-val {
+            padding-left: 1rem;
+            font-family: "Lora";
+            font-size: .9rem;  
+        }
+        
+        .set1{
+         background-color: #FAA0A0;
+        }
+        
+        .set2{
+        background-color: #FFD1DC;
+        }
+        
+        .set3{
+        background-color: #FDFD96;
+        }
+        
+        .set4{
+        background-color: #836953;
+        }
+        
+        .set5{
+        background-color: #77DD77;
+        }
+        
+        .set6{
+        background-color: cfcfc4;
+        }
+        
+        .set7{
+        background-color: #FAC898;
+        }
+        
+        .set8{
+        background-color: #B3EBF2;
+        }
+        
+        .set9{
+        background-color: #dfc7a7;
+        }
+        
+        .set10{
+        background-color: #ffc067;
+        }
+        
+        .heart{
+        background-color: #E6E6FA;
+        }
+        
+        .base{
+        background-color: #FFFF00;
+        }
+       
+
+        /* Fragrance Selection Styles */
+        .option-set {
+            margin: 20px 0;
+        }
+
+        .option-set h3 {
+            margin-bottom: 10px;
+        }
+
+        .option-set button {
+            padding: 10px 20px;
+            box-shadow: 2px 1px 4px 1px #a89f9f;
+            color: #211e1e;
+            font-family: "Cinzel";
+            border: .4px solid #ccc;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .option-set button.selected {
+            background-color: #272626;
+            color: #fff;
+        }
+
+        .option-set button.disabled {
+            background-color: #eee;
+            color: #999;
+            pointer-events: none;
+        }
+
+        .create-button {
+            padding: 10px 20px;
+            background-image: linear-gradient(to right, #ae9898, #7483de);
+            font-family: "Cinzel";
+            box-shadow: 2px 1px 4px 1px #a89f9f;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            display: none;
+        }
+
+        #fragrance-result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Bottle Design -->
+    <div id="bottle">
+        <div id="cap"></div>
+        <div id="mouth"></div>
+        <div id="neck"></div>
+        <div id="shoulder"></div>
+        <div id="body"></div>
+    </div>
+    
+    
+    
+    <h1>Select Your Fragrance</h1>
+
+    <!-- Top Notes -->
+    <div class="option-set" id="top-notes">
+        <h3>Top Notes</h3>
+        <div id="set1">
+            <button data-set="1" data-value="Rose" data-section="top" class="set1">Rose</button>
+            <button data-set="1" data-value="Red Berries" data-section="top" class="set1">Red Berries</button>
+        </div>
+        <div id="set2">
+            <button data-set="2" data-value="Vanilla" data-section="top" class="set2">Vanilla</button>
+            <button data-set="2" data-value="Pink Pepper" data-section="top" class="set2">Pink Pepper</button>
+        </div>
+        <div id="set3">
+            <button data-set="3" data-value="Mint" data-section="top" class="set3">Mint</button>
+            <button data-set="3" data-value="Lemon Zest" data-section="top" class="set3">Lemon Zest</button>
+        </div>
+        <div id="set4">
+            <button data-set="4" data-value="Rum" data-section="top" class="set4">Rum</button>
+            <button data-set="4" data-value="Nutmeg" data-section="top" class="set4">Nutmeg</button>
+        </div>
+        <div id="set5">
+            <button data-set="5" data-value="Green Apple" data-section="top" class="set5">Green Apple</button>
+            <button data-set="5" data-value="Lemon" data-section="top" class="set5">Lemon</button>
+        </div>
+        <div id="set6">
+            <button data-set="6" data-value="Incense" data-section="top" class="set6">Incense</button>
+            <button data-set="6" data-value="Pepper" data-section="top" class="set6">Pepper</button>
+        </div>
+        <div id="set7">
+            <button data-set="7" data-value="Amber" data-section="top" class="set7">Amber</button>
+            <button data-set="7" data-value="Saffron" data-section="top" class="set7">Saffron</button>
+        </div>
+        <div id="set8">
+            <button data-set="8" data-value="Sea Salt" data-section="top" class="set8">Sea Salt</button>
+            <button data-set="8" data-value="Lemon" data-section="top" class="set8">Lemon</button>
+        </div>
+        <div id="set9">
+            <button data-set="9" data-value="Vanilla" data-section="top" class="set9">Vanilla</button>
+            <button data-set="9" data-value="Bourbon" data-section="top" class="set9">Bourbon</button>
+        </div>
+        <div id="set10">
+            <button data-set="10" data-value="Tobacco" data-section="top" class="set10">Tobacco</button>
+            <button data-set="10" data-value="Cinnamon" data-section="top" class="set10">Cinnamon</button>
+        </div>
+    </div>
+
+    <!-- Heart Notes -->
+    <div class="option-set" id="heart-notes" class="heart" style="display: none;">
+        <h3>Heart Notes</h3>
+    </div>
+
+    <!-- Base Notes -->
+    <div class="option-set" id="base-notes" class="base" style="display: none;">
+        <h3>Base Notes</h3>
+    </div>
+
+    <button class="create-button" id="create-button">Create Fragrance</button>
+
+    <h2>Selected Notes:</h2>
+    <p id="selected-notes">None</p>
+
+    <div id="fragrance-result"></div>
+
+    <script>
+        const selectedOptions = {
+            top: [],
+            heart: [],
+            base: []
+        };
+
+        let activeTopSet = null;
+        let selectedHeartNotes = [];
+
+        const topToHeartMap = {
+            1: ["Clove", "Violet"],
+            2: ["Smoked Woods", "Jasmine"],
+            3: ["Neroli", "Green Tea"],
+            4: ["Clove", "Cinnamon"],
+            5: ["Rose", "Lily of the Valley"],
+            6: ["Leather", "Oud"],
+            7: ["Rose", "Cinnamon"],
+            8: ["Lavender", "Marine Accord"],
+            9: ["Caramel", "Tonka Bean"],
+            10: ["Honey", "Clove"],
+        };
+
+        const heartToBaseMap = {
+            "Clove, Violet": ["Oud", "Patchouli", "Amber"],
+            "Smoked Woods, Jasmine": ["Leather", "Incense"],
+            "Neroli, Green Tea": ["White Musk", "Cedar"],
+            "Clove, Cinnamon": ["Vanilla", "Tobacco"],
+            "Rose, Lily of the Valley": ["Amber", "Cedar", "Musk"],
+            "Leather, Oud": ["Amber", "Sandalwood", "Patchouli"],
+            "Rose, Cinnamon": ["Oud", "Musk", "Vanilla"],
+            "Lavender, Marine Accord": ["Driftwood", "Vetiver"],
+            "Caramel, Tonka Bean": ["Sandalwood", "Amber"],
+            "Honey, Clove": ["Tonka Bean", "Leather"]
+        };
+
+        // Top Notes selection
+        document.querySelectorAll('#top-notes button').forEach(button => {
+            button.addEventListener('click', (event) => {
+                const set = event.target.getAttribute('data-set');
+                const value = event.target.getAttribute('data-value');
+                const section = event.target.getAttribute('data-section');
+
+                handleSelection("top", set, value, section);
+
+                if (selectedOptions.top.length > 0) {
+                    document.getElementById('heart-notes').style.display = 'block';
+                    displayOptions('#heart-notes', topToHeartMap[set], 'Heart Notes', 'heart');
+                    disableOtherTopSets(set);
+                    document.getElementById('create-button').style.display = 'inline-block';
+                } else {
+                    document.getElementById('heart-notes').style.display = 'none';
+                    document.getElementById('base-notes').style.display = 'none';
+                    enableAllTopSets();
+                    selectedOptions.heart = [];
+                    selectedHeartNotes = [];
+                    selectedOptions.base = [];
+                    document.getElementById('create-button').style.display = 'none';
+                }
+                updateSelectedNotes();
+            });
+        });
+
+        function displayOptions(selector, options, title, type) {
+            const container = document.querySelector(selector);
+            container.style.display = 'block';
+            container.innerHTML = `<h3>${title}</h3>`;
+
+            const heartNoteCombination = options.join(', ');
+            options.forEach(option => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.setAttribute('data-value', option);
+                button.setAttribute('data-section', type);
+                container.appendChild(button);
+
+                if (type === 'heart' && selectedHeartNotes.includes(option)) {
+                    button.classList.add('selected');
+                }
+
+                if (type === 'base' && selectedOptions.base.includes(option)) {
+                    button.classList.add('selected');
+                }
+
+                button.addEventListener('click', () => {
+                    handleSelection(type, null, option, type);
+
+                    if (type === 'heart') {
+                        if (selectedOptions.heart.length > 0) {
+                            document.getElementById('base-notes').style.display = 'block';
+                            const selectedHeartNote = heartNoteCombination;
+                            displayOptions('#base-notes', heartToBaseMap[selectedHeartNote], 'Base Notes', 'base');
+                        } else {
+                            document.getElementById('base-notes').style.display = 'none';
+                            selectedOptions.base = [];
+                        }
+                    }
+
+                    updateSelectedNotes();
+                });
+            });
+        }
+
+        function handleSelection(type, set, value, section) {
+            const button = document.querySelector(`button[data-value="${value}"][data-section="${section}"]`);
+            if (selectedOptions[type].includes(value)) {
+                selectedOptions[type] = selectedOptions[type].filter(opt => opt !== value);
+                button.classList.remove('selected');
+                if (type === 'top' && activeTopSet === set && selectedOptions.top.length === 0) {
+                    activeTopSet = null;
+                }
+                if (type === 'heart') {
+                    selectedHeartNotes = selectedHeartNotes.filter(opt => opt !== value);
+                }
+            } else {
+                if (type === 'top' && activeTopSet && activeTopSet !== set) {
+                    return; // Prevent selecting from another set
+                }
+                selectedOptions[type].push(value);
+                button.classList.add('selected');
+                if (type === 'top') activeTopSet = set;
+                if (type === 'heart') {
+                    selectedHeartNotes.push(value);
+                }
+            }
+        }
+
+        function disableOtherTopSets(activeSet) {
+            document.querySelectorAll('#top-notes button').forEach(button => {
+                const set = button.getAttribute('data-set');
+                if (set !== activeSet) {
+                    button.classList.add('disabled');
+                }
+            });
+        }
+
+        function enableAllTopSets() {
+            document.querySelectorAll('#top-notes button').forEach(button => {
+                button.classList.remove('disabled');
+            });
+        }
+
+        function updateSelectedNotes() {
+            const topNotes = selectedOptions.top.length > 0 ? `Top Notes: ${selectedOptions.top.join(', ')}` : "Top Notes: None";
+            const heartNotes = selectedHeartNotes.length > 0 ? `Heart Notes: ${selectedHeartNotes.join(', ')}` : "Heart Notes: None";
+            const baseNotes = selectedOptions.base.length > 0 ? `Base Notes: ${selectedOptions.base.join(', ')}` : "Base Notes: None";
+
+            document.getElementById('selected-notes').innerText = `${topNotes}, ${heartNotes}, ${baseNotes}`;
+        }
+
+        document.getElementById('create-button').addEventListener('click', () => {
+            const topNotes = selectedOptions.top.join(', ');
+            const heartNotes = selectedHeartNotes.join(', ');
+            const baseNotes = selectedOptions.base.join(', ');
+
+            const result = `
+                <div class="label">
+                    <h1 class="beer-name">Custom Blend</h1>
+                    <table>
+<tr><td class="beer-attr">Top Notes</td><td class="beer-val">${topNotes || 'None'}</td></tr>
+                        <tr><td class="beer-attr">Heart Notes</td><td class="beer-val">${heartNotes || 'None'}</td></tr>
+                        <tr><td class="beer-attr">Base Notes</td><td class="beer-val">${baseNotes || 'None'}</td></tr>
+                    </table>
+                </div>
+            
+            `;
+            document.querySelector('#body').innerHTML = result;
+            
+        });
+    </script>
+
+</body>
+</html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fragrance Selection & Bottle</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Cinzel&display=swap");
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            --bottle-gradient:linear-gradient(to right, 
+            #322424 0%, 
+            #473a39 1%, 
+            #a9b0ad 6%, 
+            #897365 42%,
+            #2d1d7d 67%,
+            #390c53 90%,
+            #60c697 56%,
+            #44b4ca 70%,
+            #6cab54 70%,
+            #301e44 60%);
+            );
+            --metal-gradient: linear-gradient(
+                to right,
+                #393939 2%,
+                #e3e3e3 15% 45%,
+                #939393 50% 65%,
+                #d8d8d8 75% 85%,
+                #6c6c6c 95%
+            );
+        }
+
+        body {
+            background: white;
+            background-blend-mode: multiply;
+            background-repeat: no-repeat;
+            background-size: fill;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        /* Bottle Styles */
+        #bottle {
+            max-width: 320px;
+            margin: 2rem auto 0;
+        }
+
+        #cap {
+            background-image: var(--metal-gradient);
+            border-bottom: 0.25rem solid rgba(0, 0, 0, 0.85);
+            border-radius: 0.75rem 0.75rem 0.25rem 0.25rem;
+            box-shadow: inset 0 -0.6rem 0.25rem rgba(0, 0, 0, 0.675),
+                        inset 0 0.25rem 0.25rem rgba(0, 0, 0, 0.5);
+            width: 42%;
+            height: 6rem;
+            margin: 0 8.5rem auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        #cap::after {
+            content: "";
+            width: 100%;
+            height: 0.2rem;
+            background-image: repeating-linear-gradient(
+                65deg,
+                #ffffff,
+                #ffffff 5%,
+                #000000 8%,
+                #c7c7c7 15%
+            );
+            display: block;
+            position: absolute;
+            bottom: 0;
+            mix-blend-mode: multiply;
+        }
+
+        #mouth {
+            background-image: var(--bottle-gradient);
+            border-radius: 0.75rem;
+            box-shadow: inset 0 0 0.75rem rgba(0, 0, 0, 0.75),
+                        inset 0 0 1rem rgba(0, 0, 0, 0.75);
+            width: 37%;
+            height: 1rem;
+            margin: 0 9rem auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        #neck {
+            background-image: var(--bottle-gradient);
+            box-shadow: inset 0 2rem 2rem 1rem rgba(0, 0, 0, 0.75);
+            width: 40%;
+            height: 10rem;
+            border-radius: 0.75rem 0.75rem 0.25rem 0.25rem;
+            margin: -7.0rem 8.77rem -2.0rem;
+            transform: perspective(1rem) rotateX(.2deg);
+        }
+
+        #shoulder {
+            background-image: var(--bottle-gradient);
+            border-radius: 1rem 1rem 0 0;
+            box-shadow: inset 2rem 0.25rem 1.5rem -0.3rem rgba(0, 0, 0, 0.5),
+                        inset -4rem 1rem 1.5rem -0.3rem rgba(0, 0, 0, 0.5),
+                        inset -1rem 0.5rem 1rem rgba(0, 0, 0, 0.5);
+            height: 6em;
+            margin: 0 -40 -0.25rem;
+            position: relative;
+            transform: translateY(-1rem);
+            width: 25em;
+            z-index: 1;
+        }
+
+        #body {
+            background-image: var(--bottle-gradient);
+            border-radius: 0 0 .4rem .4rem;
+            box-shadow: inset 0 -0.1rem 0.1rem rgba(0, 0, 0, 0.25),
+                        inset 1rem -0.1rem 1.5rem rgba(0, 0, 0, 0.5),
+                        inset -1rem -2rem 1.5rem rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 -40;
+            min-height: 20rem;
+            padding: 2rem;
+            position: relative;
+            transform: translateY(-1.5rem);
+            width: 25em;
+            z-index: 2;
+        }
+
+        #body::after {
+            content: "";
+            border-radius: 80%;
+            box-shadow: 3rem -1rem 1.5rem -0.5rem rgba(0, 0, 0, 0);
+            width: 120%;
+            height: 1.3rem;
+            background-color: black;
+            display: block;
+            position: absolute;
+            bottom: -0.875rem;
+            filter: blur(0.7rem);
+            z-index: -999;
+        }
+
+        .label {
+            background-image: linear-gradient(
+                to right,
+                #dcdcdc 2%,
+                #fefefe 10% 35%,
+                #ffffff 40% 65%,
+                #eaeaea 70% 80%,
+                #fafafa 85% 95%,
+                #dcdcdc 98%
+            );
+            border-top: 1px solid #524444;
+            border-left: 1px solid #423434;
+            border-right: 1px solid #423434;
+            border-bottom: 1px solid #23211e;
+            border-radius: 0.5rem;
+            box-shadow: 0 4rem 4rem -1rem rgba(0, 0, 0, 0.6),
+                        0 -7rem 3rem -1.75rem rgba(0, 0, 0, 0.4);
+            padding: 1rem;
+            margin-bottom: 3rem;
+            margin-top: -3rem;
+        }
+
+        .beer-brand {
+            font-size: 1.25rem;
+            font-weight: lighter;
+            margin: 0.5rem auto 0.125rem;
+            text-align: center;
+        }
+
+        .beer-name {
+            font-family: "Cinzel";
+            font-size: 1.6rem;
+            letter-spacing: .3rem;
+            margin: 0 auto 1rem;
+            text-align: center;
+        }
+
+        .beer-name::after {
+            background-color: #333;
+            content: "";
+            display: block;
+            height: 0.0675rem;
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+        .beer-attr {
+            text-transform: capitalize;
+            font-size: .85rem;
+          
+        }
+
+        .beer-val {
+            padding-left: 1rem;
+            font-family: "Lora";
+            font-size: .9rem;  
+        }
+        
+        .set1{
+         background-color: #FAA0A0;
+        }
+        
+        .set2{
+        background-color: #FFD1DC;
+        }
+        
+        .set3{
+        background-color: #FDFD96;
+        }
+        
+        .set4{
+        background-color: #836953;
+        }
+        
+        .set5{
+        background-color: #77DD77;
+        }
+        
+        .set6{
+        background-color: cfcfc4;
+        }
+        
+        .set7{
+        background-color: #FAC898;
+        }
+        
+        .set8{
+        background-color: #B3EBF2;
+        }
+        
+        .set9{
+        background-color: #dfc7a7;
+        }
+        
+        .set10{
+        background-color: #ffc067;
+        }
+        
+        .heart{
+        background-color: #E6E6FA;
+        }
+        
+        .base{
+        background-color: #FFFF00;
+        }
+       
+
+        /* Fragrance Selection Styles */
+        .option-set {
+            margin: 20px 0;
+        }
+
+        .option-set h3 {
+            margin-bottom: 10px;
+        }
+
+        .option-set button {
+            padding: 10px 20px;
+            box-shadow: 2px 1px 4px 1px #a89f9f;
+            color: #211e1e;
+            font-family: "Cinzel";
+            border: .4px solid #ccc;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .option-set button.selected {
+            background-color: #272626;
+            color: #fff;
+        }
+
+        .option-set button.disabled {
+            background-color: #eee;
+            color: #999;
+            pointer-events: none;
+        }
+
+        .create-button {
+            padding: 10px 20px;
+            background-image: linear-gradient(to right, #ae9898, #7483de);
+            font-family: "Cinzel";
+            box-shadow: 2px 1px 4px 1px #a89f9f;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            display: none;
+        }
+
+        #fragrance-result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Bottle Design -->
+    <div id="bottle">
+        <div id="cap"></div>
+        <div id="mouth"></div>
+        <div id="neck"></div>
+        <div id="shoulder"></div>
+        <div id="body"></div>
+    </div>
+    
+    
+    
+    <h1>Select Your Fragrance</h1>
+
+    <!-- Top Notes -->
+    <div class="option-set" id="top-notes">
+        <h3>Top Notes</h3>
+        <div id="set1">
+            <button data-set="1" data-value="Rose" data-section="top" class="set1">Rose</button>
+            <button data-set="1" data-value="Red Berries" data-section="top" class="set1">Red Berries</button>
+        </div>
+        <div id="set2">
+            <button data-set="2" data-value="Vanilla" data-section="top" class="set2">Vanilla</button>
+            <button data-set="2" data-value="Pink Pepper" data-section="top" class="set2">Pink Pepper</button>
+        </div>
+        <div id="set3">
+            <button data-set="3" data-value="Mint" data-section="top" class="set3">Mint</button>
+            <button data-set="3" data-value="Lemon Zest" data-section="top" class="set3">Lemon Zest</button>
+        </div>
+        <div id="set4">
+            <button data-set="4" data-value="Rum" data-section="top" class="set4">Rum</button>
+            <button data-set="4" data-value="Nutmeg" data-section="top" class="set4">Nutmeg</button>
+        </div>
+        <div id="set5">
+            <button data-set="5" data-value="Green Apple" data-section="top" class="set5">Green Apple</button>
+            <button data-set="5" data-value="Lemon" data-section="top" class="set5">Lemon</button>
+        </div>
+        <div id="set6">
+            <button data-set="6" data-value="Incense" data-section="top" class="set6">Incense</button>
+            <button data-set="6" data-value="Pepper" data-section="top" class="set6">Pepper</button>
+        </div>
+        <div id="set7">
+            <button data-set="7" data-value="Amber" data-section="top" class="set7">Amber</button>
+            <button data-set="7" data-value="Saffron" data-section="top" class="set7">Saffron</button>
+        </div>
+        <div id="set8">
+            <button data-set="8" data-value="Sea Salt" data-section="top" class="set8">Sea Salt</button>
+            <button data-set="8" data-value="Lemon" data-section="top" class="set8">Lemon</button>
+        </div>
+        <div id="set9">
+            <button data-set="9" data-value="Vanilla" data-section="top" class="set9">Vanilla</button>
+            <button data-set="9" data-value="Bourbon" data-section="top" class="set9">Bourbon</button>
+        </div>
+        <div id="set10">
+            <button data-set="10" data-value="Tobacco" data-section="top" class="set10">Tobacco</button>
+            <button data-set="10" data-value="Cinnamon" data-section="top" class="set10">Cinnamon</button>
+        </div>
+    </div>
+
+    <!-- Heart Notes -->
+    <div class="option-set" id="heart-notes" class="heart" style="display: none;">
+        <h3>Heart Notes</h3>
+    </div>
+
+    <!-- Base Notes -->
+    <div class="option-set" id="base-notes" class="base" style="display: none;">
+        <h3>Base Notes</h3>
+    </div>
+
+    <button class="create-button" id="create-button">Create Fragrance</button>
+
+    <h2>Selected Notes:</h2>
+    <p id="selected-notes">None</p>
+
+    <div id="fragrance-result"></div>
+
+    <script>
+        const selectedOptions = {
+            top: [],
+            heart: [],
+            base: []
+        };
+
+        let activeTopSet = null;
+        let selectedHeartNotes = [];
+
+        const topToHeartMap = {
+            1: ["Clove", "Violet"],
+            2: ["Smoked Woods", "Jasmine"],
+            3: ["Neroli", "Green Tea"],
+            4: ["Clove", "Cinnamon"],
+            5: ["Rose", "Lily of the Valley"],
+            6: ["Leather", "Oud"],
+            7: ["Rose", "Cinnamon"],
+            8: ["Lavender", "Marine Accord"],
+            9: ["Caramel", "Tonka Bean"],
+            10: ["Honey", "Clove"],
+        };
+
+        const heartToBaseMap = {
+            "Clove, Violet": ["Oud", "Patchouli", "Amber"],
+            "Smoked Woods, Jasmine": ["Leather", "Incense"],
+            "Neroli, Green Tea": ["White Musk", "Cedar"],
+            "Clove, Cinnamon": ["Vanilla", "Tobacco"],
+            "Rose, Lily of the Valley": ["Amber", "Cedar", "Musk"],
+            "Leather, Oud": ["Amber", "Sandalwood", "Patchouli"],
+            "Rose, Cinnamon": ["Oud", "Musk", "Vanilla"],
+            "Lavender, Marine Accord": ["Driftwood", "Vetiver"],
+            "Caramel, Tonka Bean": ["Sandalwood", "Amber"],
+            "Honey, Clove": ["Tonka Bean", "Leather"]
+        };
+
+        // Top Notes selection
+        document.querySelectorAll('#top-notes button').forEach(button => {
+            button.addEventListener('click', (event) => {
+                const set = event.target.getAttribute('data-set');
+                const value = event.target.getAttribute('data-value');
+                const section = event.target.getAttribute('data-section');
+
+                handleSelection("top", set, value, section);
+
+                if (selectedOptions.top.length > 0) {
+                    document.getElementById('heart-notes').style.display = 'block';
+                    displayOptions('#heart-notes', topToHeartMap[set], 'Heart Notes', 'heart');
+                    disableOtherTopSets(set);
+                    document.getElementById('create-button').style.display = 'inline-block';
+                } else {
+                    document.getElementById('heart-notes').style.display = 'none';
+                    document.getElementById('base-notes').style.display = 'none';
+                    enableAllTopSets();
+                    selectedOptions.heart = [];
+                    selectedHeartNotes = [];
+                    selectedOptions.base = [];
+                    document.getElementById('create-button').style.display = 'none';
+                }
+                updateSelectedNotes();
+            });
+        });
+
+        function displayOptions(selector, options, title, type) {
+            const container = document.querySelector(selector);
+            container.style.display = 'block';
+            container.innerHTML = `<h3>${title}</h3>`;
+
+            const heartNoteCombination = options.join(', ');
+            options.forEach(option => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.setAttribute('data-value', option);
+                button.setAttribute('data-section', type);
+                container.appendChild(button);
+
+                if (type === 'heart' && selectedHeartNotes.includes(option)) {
+                    button.classList.add('selected');
+                }
+
+                if (type === 'base' && selectedOptions.base.includes(option)) {
+                    button.classList.add('selected');
+                }
+
+                button.addEventListener('click', () => {
+                    handleSelection(type, null, option, type);
+
+                    if (type === 'heart') {
+                        if (selectedOptions.heart.length > 0) {
+                            document.getElementById('base-notes').style.display = 'block';
+                            const selectedHeartNote = heartNoteCombination;
+                            displayOptions('#base-notes', heartToBaseMap[selectedHeartNote], 'Base Notes', 'base');
+                        } else {
+                            document.getElementById('base-notes').style.display = 'none';
+                            selectedOptions.base = [];
+                        }
+                    }
+
+                    updateSelectedNotes();
+                });
+            });
+        }
+
+        function handleSelection(type, set, value, section) {
+            const button = document.querySelector(`button[data-value="${value}"][data-section="${section}"]`);
+            if (selectedOptions[type].includes(value)) {
+                selectedOptions[type] = selectedOptions[type].filter(opt => opt !== value);
+                button.classList.remove('selected');
+                if (type === 'top' && activeTopSet === set && selectedOptions.top.length === 0) {
+                    activeTopSet = null;
+                }
+                if (type === 'heart') {
+                    selectedHeartNotes = selectedHeartNotes.filter(opt => opt !== value);
+                }
+            } else {
+                if (type === 'top' && activeTopSet && activeTopSet !== set) {
+                    return; // Prevent selecting from another set
+                }
+                selectedOptions[type].push(value);
+                button.classList.add('selected');
+                if (type === 'top') activeTopSet = set;
+                if (type === 'heart') {
+                    selectedHeartNotes.push(value);
+                }
+            }
+        }
+
+        function disableOtherTopSets(activeSet) {
+            document.querySelectorAll('#top-notes button').forEach(button => {
+                const set = button.getAttribute('data-set');
+                if (set !== activeSet) {
+                    button.classList.add('disabled');
+                }
+            });
+        }
+
+        function enableAllTopSets() {
+            document.querySelectorAll('#top-notes button').forEach(button => {
+                button.classList.remove('disabled');
+            });
+        }
+
+        function updateSelectedNotes() {
+            const topNotes = selectedOptions.top.length > 0 ? `Top Notes: ${selectedOptions.top.join(', ')}` : "Top Notes: None";
+            const heartNotes = selectedHeartNotes.length > 0 ? `Heart Notes: ${selectedHeartNotes.join(', ')}` : "Heart Notes: None";
+            const baseNotes = selectedOptions.base.length > 0 ? `Base Notes: ${selectedOptions.base.join(', ')}` : "Base Notes: None";
+
+            document.getElementById('selected-notes').innerText = `${topNotes}, ${heartNotes}, ${baseNotes}`;
+        }
+
+        document.getElementById('create-button').addEventListener('click', () => {
+            const topNotes = selectedOptions.top.join(', ');
+            const heartNotes = selectedHeartNotes.join(', ');
+            const baseNotes = selectedOptions.base.join(', ');
+
+            const result = `
+                <div class="label">
+                    <h1 class="beer-name">Custom Blend</h1>
+                    <table>
+<tr><td class="beer-attr">Top Notes</td><td class="beer-val">${topNotes || 'None'}</td></tr>
+                        <tr><td class="beer-attr">Heart Notes</td><td class="beer-val">${heartNotes || 'None'}</td></tr>
+                        <tr><td class="beer-attr">Base Notes</td><td class="beer-val">${baseNotes || 'None'}</td></tr>
+                    </table>
+                </div>
+            
+            `;
+            document.querySelector('#body').innerHTML = result;
+            
+        });
+    </script>
+
+</body>
+</html>
