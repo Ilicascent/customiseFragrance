@@ -49,9 +49,15 @@
 
         /* Bottle Styles */
         #bottle {
-            max-width: 320px;
+            max-width: 300px;
             margin: 2rem auto 0;
+            width: 100%;
+            
+            transform-origin: top center;
+            transform: scale(1);
+            transition: transform 0.3s ease;
         }
+        
 
         #cap {
             background-image: var(--metal-gradient);
@@ -64,6 +70,10 @@
             margin: 0 8.5rem auto;
             position: relative;
             z-index: 1;
+            
+            transform-origin: bottom center;
+            transform: scale(1);
+            transition: transform 0.3s ease;
         }
 
         #cap::after {
@@ -93,6 +103,11 @@
             margin: 0 9rem auto;
             position: relative;
             z-index: 1;
+            
+            
+            transform-origin: bottom center;
+            transform: scale(1);
+            transition: transform 0.3s ease;
         }
 
         #neck {
@@ -103,6 +118,10 @@
             border-radius: 0.75rem 0.75rem 0.25rem 0.25rem;
             margin: -7.0rem 8.77rem -2.0rem;
             transform: perspective(1rem) rotateX(.2deg);
+            
+            transform-origin: bottom center;
+            transform: scale(1);
+            transition: transform 0.3s ease;
         }
 
         #shoulder {
@@ -308,6 +327,90 @@
             margin-top: 20px;
             font-weight: bold;
         }
+        
+              /* Responsive adjustments */
+      @media (max-width: 768px) {
+          #bottle {
+              transform: scale(0.8);
+          }
+         
+          
+          .option-set button {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+          #bottle {
+              transform: scale(0.6);
+          }
+          
+          
+          
+            .option-set button {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+       }
+      }
+      
+      @media (max-width: 343px) {
+          #bottle {
+              transform: scale(0.4);
+              margin: 2rem auto -10em;
+             
+          }
+           #cap {
+         
+           width:50%;
+           transform: scale(0.8);
+          
+        }
+        
+        #mouth{
+        transform: scale(0.8);
+        width: 42%;
+    
+     
+        }
+        #neck{
+        transform: scale(0.8);
+        width: 46%;
+        
+        
+        
+        }
+      }
+      
+      @media (max-width: 270px) {
+          #bottle {
+              transform: scale(0.3);
+              margin: 2rem -2em -10em;
+          }
+          
+           #cap {
+         
+           width:70%;
+           transform: scale(0.68);
+          
+        }
+        
+        #mouth{
+        transform: scale(0.66);
+        width: 68%;
+        margin: 0 8.5rem auto;
+    
+     
+        }
+        #neck{
+        transform: scale(0.65);
+        width: 70%;
+        margin: -7.0rem 8.5rem -2.0rem;
+      
+      }
+
+
+        
     </style>
 </head>
 <body>
