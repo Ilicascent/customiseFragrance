@@ -328,6 +328,24 @@
             margin-top: 20px;
             font-weight: bold;
         }
+
+        .input {
+            border: none;
+          outline: none;
+          border-radius: 15px;
+          padding: 1em;
+          width: 50%;
+          max-width: 30em;
+          background-color: #ebe5ff;
+          box-shadow: inset 2px 5px 10px rgba(0, 0, 0, 0.3);
+          transition: 300ms ease-in-out;
+      }
+
+    .input:focus {
+      background-color: #dbdce0;
+      transform: scale(1.05);
+      box-shadow: 13px 13px 100px 0px #9d9696, -1px 0px 12px 4px #cfcad5;
+    }
         
               /* Responsive adjustments */
       @media (max-width: 768px) {
@@ -427,6 +445,8 @@
     </div>
     
     
+     <h2>Name Your Fragrance</h2>
+   <input type="text" autocomplete="off" name="text" class="input" id="fname" placeholder="Fragrance">
     
     <h1>Select Your Fragrance</h1>
 
@@ -646,10 +666,11 @@
             const topNotes = selectedOptions.top.join(', ');
             const heartNotes = selectedHeartNotes.join(', ');
             const baseNotes = selectedOptions.base.join(', ');
+            const fname = document.getElementById('fname').value;
 
             const result = `
                 <div class="label">
-                    <h1 class="beer-name">Custom Blend</h1>
+                     <h1 class="beer-name">${fname || 'Custom Blend'}</h1>
                     <table>
 <tr><td class="beer-attr">Top Notes</td><td class="beer-val">${topNotes || 'None'}</td></tr>
                         <tr><td class="beer-attr">Heart Notes</td><td class="beer-val">${heartNotes || 'None'}</td></tr>
